@@ -64,6 +64,7 @@ public class MainActivity extends FragmentActivity implements
 	private DownloadManager mDownloadManager;
 	private FrameLayout mProgressLayout;
 	private MenuItem mRefreshItem = null;
+	private String mTest="test";
 
 	private static final String FEED_APPOINMENT = "https://testing.jifflenow.net/cisco_gartner2013/calendar.json";
 
