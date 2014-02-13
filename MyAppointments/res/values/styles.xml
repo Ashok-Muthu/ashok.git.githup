@@ -1,0 +1,30 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="list_item_title_view_sytle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/background_dark</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">normal</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:lines">1</item>
+        <item name="android:layout_margin">@dimen/layout_margin_list_item</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="list_item_title_view_sytle.subview" >
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+      <style name="list_item_title_view_sytle.twolines" >
+        <item name="android:textSize">16sp</item>
+        <item name="android:lines">2</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    
+      <style name="list_item_title_view_sytle.center" >
+         <item name="android:gravity">center</item>
+    </style>
+
+</resources>

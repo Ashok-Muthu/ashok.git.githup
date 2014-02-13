@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="layout_margin_list_item">5dp</dimen>
+    <dimen name="width_reminder">30dp</dimen>
+    <dimen name="height_reminder">35dp</dimen>
+    <dimen name="width_progress_bar">40dp</dimen>
+    <dimen name="height_progress_bar">40dp</dimen>
+
+</resources>

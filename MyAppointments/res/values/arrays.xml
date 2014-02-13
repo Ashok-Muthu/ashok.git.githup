@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="tab_list">
+        <item>@string/title_mon</item>
+        <item>@string/title_tue</item>
+        <item>@string/title_wed</item>
+        <item>@string/title_thu</item>
+        <item>@string/title_fri</item>
+        <item>@string/title_sat</item>
+        <item>@string/title_sun</item>
+    </string-array>
+    <string-array name="day_list">
+        <item>mon</item>
+        <item>tue</item>
+        <item>wed</item>
+        <item>thu</item>
+        <item>fri</item>
+        <item>sat</item>
+        <item>sun</item>
+    </string-array>
+
+</resources>
