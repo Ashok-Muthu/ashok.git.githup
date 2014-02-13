@@ -15,6 +15,7 @@ import com.myappointments.network.DownloadManager;
 import com.myappointments.network.NetworkStateListener;
 import com.myappointments.network.NetworkStateReceiver;
 import com.myappointments.parser.AppointmentDataParser;
+import com.myappointments.push.PubnubSubscription;
 import com.myappointments.utils.UiUtils;
 
 import android.app.ActionBar;
@@ -23,6 +24,10 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.FragmentTransaction;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -64,9 +69,10 @@ public class MainActivity extends FragmentActivity implements
 	private DownloadManager mDownloadManager;
 	private FrameLayout mProgressLayout;
 	private MenuItem mRefreshItem = null;
-	private String mTest="test";
 
 	private static final String FEED_APPOINMENT = "https://testing.jifflenow.net/cisco_gartner2013/calendar.json";
+	private final static int SUBSCRIBE_PUBNUB = 0;
+	private final static int PUBNUB_MSG_RECEIVED = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +96,32 @@ public class MainActivity extends FragmentActivity implements
 
 		mHandler = new DownloadHandler();
 		mHandler.sendEmptyMessage(DOWNLOAD_START);
+		PubNubHandler mPubnubHanlder = new PubNubHandler();
+		mPubnubHanlder.sendEmptyMessage(SUBSCRIBE_PUBNUB);
+	}
+
+	class PubNubHandler extends Handler {
+		@Override
+		public void handleMessage(Message msg) {
+			if (msg.what == SUBSCRIBE_PUBNUB) {
+				new PubnubSubscription(this);
+			} else if (msg.what == PUBNUB_MSG_RECEIVED) {
+				Toast.makeText(MainActivity.this, msg.obj.toString(),
+						Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(MainActivity.this,MainActivity.class);
+				PendingIntent pIntent = PendingIntent.getActivity(MainActivity.this, 10, intent, 0);
+				NotificationManager notifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+				Notification notification = new Notification.Builder(
+						MainActivity.this).setContentTitle("Title")
+						.setContentText(msg.toString())
+						.setSmallIcon(android.R.drawable.btn_plus)
+						.setContentIntent(pIntent)
+						.setAutoCancel(true)
+						.build();
+
+				notifyManager.notify(10, notification);
+			}
+		}
 	}
 
 	public void hideProgressBar() {
